@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudshield-backend
+  namespace: cloudshield
+  labels:
+    app: cloudshield
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudshield-backend
+  template:
+    metadata:
+      labels:
+        app: cloudshield-backend
+    spec:
+      containers:
+        - name: backend
+          image: cloudshield-backend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudshield-frontend
+  namespace: cloudshield
+  labels:
+    app: cloudshield
+    tier: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cloudshield-frontend
+  template:
+    metadata:
+      labels:
+        app: cloudshield-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: cloudshield-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
