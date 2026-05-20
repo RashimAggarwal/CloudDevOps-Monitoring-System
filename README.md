@@ -162,6 +162,17 @@ docker compose down
 docker compose up -d --build
 ```
 
+On a Windows Jenkins agent, the pipeline sets these ports automatically to avoid common local conflicts:
+
+```text
+FRONTEND_PORT=3002
+BACKEND_PORT=5000
+PROMETHEUS_PORT=9091
+GRAFANA_PORT=3001
+```
+
+If Jenkins reports `Bind for 0.0.0.0:3000 failed: port is already allocated`, another app or container is already using port `3000`. Keep the Jenkinsfile port override above, or stop the process using that port.
+
 ## Kubernetes / Minikube
 
 Start Minikube:
