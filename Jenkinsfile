@@ -21,7 +21,6 @@ pipeline {
                         }
                     }
                 }
-
             }
         }
 
@@ -48,10 +47,24 @@ pipeline {
             }
         }
 
+        stage('Clean old containers') {
+            steps {
+
+                bat 'docker rm -f cloudshield-backend || exit 0'
+                bat 'docker rm -f cloudshield-frontend || exit 0'
+                bat 'docker rm -f cloudshield-grafana || exit 0'
+                bat 'docker rm -f cloudshield-prometheus || exit 0'
+
+            }
+        }
+
         stage('Deploy using Docker Compose') {
             steps {
-                bat 'docker compose down'
+
+                bat 'docker compose down --remove-orphans'
+
                 bat 'docker compose up -d --build'
+
             }
         }
 
