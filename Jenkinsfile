@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    FRONTEND_IMAGE = "cloudshield-frontend:${BUILD_NUMBER}"
-    BACKEND_IMAGE = "cloudshield-backend:${BUILD_NUMBER}"
+    FRONTEND_IMAGE = "cloudshield-frontend:%{BUILD_NUMBER}"
+    BACKEND_IMAGE = "cloudshield-backend:%{BUILD_NUMBER}"
   }
 
   stages {
@@ -44,8 +44,8 @@ pipeline {
 
     stage('Build Docker images') {
       steps {
-        bat 'docker build -t $FRONTEND_IMAGE ./frontend'
-        bat 'docker build -t $BACKEND_IMAGE ./backend'
+        bat 'docker build -t %FRONTEND_IMAGE% ./frontend'
+        bat 'docker build -t %BACKEND_IMAGE% ./backend'
       }
     }
 
