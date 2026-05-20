@@ -12,14 +12,14 @@ pipeline {
         stage('Frontend dependencies') {
           steps {
             dir('frontend') {
-              sh 'npm install'
+              bat 'npm install'
             }
           }
         }
         stage('Backend dependencies') {
           steps {
             dir('backend') {
-              sh 'npm install'
+              bat 'npm install'
             }
           }
         }
@@ -29,7 +29,7 @@ pipeline {
     stage('Build frontend') {
       steps {
         dir('frontend') {
-          sh 'npm run build'
+          bat 'npm run build'
         }
       }
     }
@@ -37,22 +37,22 @@ pipeline {
     stage('Run backend tests') {
       steps {
         dir('backend') {
-          sh 'npm test'
+          bat 'npm test'
         }
       }
     }
 
     stage('Build Docker images') {
       steps {
-        sh 'docker build -t $FRONTEND_IMAGE ./frontend'
-        sh 'docker build -t $BACKEND_IMAGE ./backend'
+        bat 'docker build -t $FRONTEND_IMAGE ./frontend'
+        bat 'docker build -t $BACKEND_IMAGE ./backend'
       }
     }
 
     stage('Deploy using Docker Compose') {
       steps {
-        sh 'docker compose down'
-        sh 'docker compose up -d --build'
+        bat 'docker compose down'
+        bat 'docker compose up -d --build'
       }
     }
   }
