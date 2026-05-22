@@ -69,7 +69,7 @@ function StatCard({ icon: Icon, label, value, detail, tone = "cyan" }) {
   }[tone];
 
   return (
-    <section className="rounded-lg border border-shield-line bg-shield-panel p-4 shadow-glow">
+    <section className="rounded-lg border border-shield-line bg-shield-panel p-4 shadow-glow text-green-500">
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-wide text-slate-400">{label}</p>
