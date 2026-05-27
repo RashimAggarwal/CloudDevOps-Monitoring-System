@@ -6,6 +6,7 @@ pipeline {
         PROMETHEUS_PORT = '9091'
         BACKEND_PORT = '5000'
         GRAFANA_PORT = '3001'
+        KUBECONFIG = 'C:\\ProgramData\\Jenkins\\.kube\\config'
     }
 
     stages {
@@ -54,6 +55,12 @@ pipeline {
             }
         }
 
+        stage('Check Kubernetes Connection') {
+            steps {
+                bat 'kubectl get nodes'
+            }
+        }
+
         stage('Deploy to Kubernetes') {
             steps {
                 bat 'kubectl rollout restart deployment cloudshield-backend -n cloudshield'
@@ -79,7 +86,7 @@ pipeline {
         }
 
         always {
-            echo 'Pipeline finished.'
+            echo 'Pipeline nished.'
         }
     }
 }
