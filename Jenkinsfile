@@ -79,7 +79,7 @@ pipeline {
         }
 
         always {
-            echo 'Pipeline execution finished.'
+            echo 'Pipeline finished.'
         }
     }
 }
