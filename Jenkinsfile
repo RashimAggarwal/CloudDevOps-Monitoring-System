@@ -86,7 +86,7 @@ pipeline {
         }
 
         always {
-            echo 'Pipeline nished.'
+            echo 'Pipeline fnished.'
         }
     }
 }
