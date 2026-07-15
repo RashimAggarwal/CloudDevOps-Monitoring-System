@@ -2,7 +2,7 @@
 
 CloudShield is a production-style academic project for Cloud Computing and DevOps coursework. It demonstrates a complete workflow around Docker, Jenkins, Kubernetes, Prometheus, Grafana, Terraform, CI/CD pipelines, monitoring, and cloud infrastructure.
 
-The application logic is intentionally simple. The main value of the project is the DevOps delivery path: code moves from GitHub to Jenkins, Docker images are built, containers are deployed, Kubernetes manages replicas, Prometheus scrapes backend metrics, Grafana visualizes telemetry, and the React dashboard shows deployment and monitoring status.
+The application logic is intentionally very simple. The main value of the project is the DevOps delivery path: code moves from GitHub to Jenkins, Docker images are built, containers are deployed, Kubernetes manages replicas, Prometheus scrapes backend metrics, Grafana visualizes telemetry, and the React dashboard shows deployment and monitoring status.
 
 ## Architecture
 
